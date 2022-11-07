@@ -102,10 +102,7 @@ public class Labyrinth {
             //Si no puedo moverme, deshacemos camino
             else {
                 path.pollLast(); //posicion en la que nos encontramos
-//                visited.remove(myPosition);
                 myPosition = new Position(path.peekLast()); //posicion a la que queremos volver
-//                visited.remove(myPosition);
-//                labyrinth[myPosition.i][myPosition.j] = ' '; //despejamos la posicion para poder volver
             }
         }
         return path;
@@ -114,10 +111,17 @@ public class Labyrinth {
 
     public void printSolution(ArrayDeque<Position> path) {
         System.out.println("Camino:");
+        Position firstPosition = path.pollFirst();
+        System.out.print("("+ firstPosition.i +", " + firstPosition.j +"); ");  
+        path.addLast(firstPosition);
+        Position position = path.pollFirst();
+        
         int i = 0;
-        while(!path.isEmpty()) {
-            Position position = path.pollFirst();
+        while(position != firstPosition) {
             System.out.print("("+ position.i +", " + position.j +"); ");
+            path.addLast(position);
+            position = path.pollFirst();
+            
             if(i==10) {
                 System.out.println();
                 i=0;
