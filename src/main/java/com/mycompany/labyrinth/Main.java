@@ -15,13 +15,14 @@ public class Main {
                 try {
 //            Labyrinth labyrinth = new Labyrinth("C:\\Users\\sdiazram\\Desktop\\laberinto1.txt", 11, 40, 
 //                new Position(0,1), new Position(10, 38));
-            Labyrinth labyrinth = new Labyrinth("C:\\Users\\sdiazram\\Desktop\\laberinto.txt", 6, 10, 
-                new Position(0,2), new Position(5, 1));
+            Labyrinth labyrinth = new Labyrinth("C:\\Users\\sdiazram\\Desktop\\laberinto1.txt", 11, 40, 
+                new Position(0,1), new Position(10, 38));
             
             labyrinth.print();
             ArrayDeque<Position> path = labyrinth.solve();
             System.out.println();
-            labyrinth.print();
+            labyrinth.printPath();
+            System.out.println();
             labyrinth.printSolution(path);
             
         } catch(Exception e) {

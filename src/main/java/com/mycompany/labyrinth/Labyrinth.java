@@ -61,7 +61,6 @@ public class Labyrinth {
                 if(myPosition.equals(endPosition))
                 {
                     solved = true;
-                    path.add(new Position(myPosition));
                 }
             }
             //Si puedo ir abajo
@@ -74,7 +73,6 @@ public class Labyrinth {
                 if(myPosition.equals(endPosition))
                 {
                     solved = true;
-                    path.add(new Position(myPosition));
                 }
             }
             //Si puedo ir a la izquierda
@@ -87,7 +85,6 @@ public class Labyrinth {
                 if(myPosition.equals(endPosition))
                 {
                     solved = true;
-                    path.add(new Position(myPosition));
                 }
             }
             //Si puedo ir arriba
@@ -100,15 +97,14 @@ public class Labyrinth {
                 if(myPosition.equals(endPosition))
                 {
                     solved = true;
-                    path.add(new Position(myPosition));
                 }
             }
             //Si no puedo moverme, deshacemos camino
             else {
-                myPosition = path.pollLast(); //posicion en la que nos encontramos
+                path.pollLast(); //posicion en la que nos encontramos
 //                visited.remove(myPosition);
-                myPosition = path.pollLast(); //posicion a la que queremos volver
-                visited.remove(myPosition);
+                myPosition = new Position(path.peekLast()); //posicion a la que queremos volver
+//                visited.remove(myPosition);
 //                labyrinth[myPosition.i][myPosition.j] = ' '; //despejamos la posicion para poder volver
             }
         }
@@ -128,6 +124,18 @@ public class Labyrinth {
             }
             i++;
         } 
+    }
+    
+    public void printPath() {
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                if(path.contains(new Position(i,j)))
+                    System.out.print('*');
+                else
+                    System.out.print(labyrinth[i][j]);
+            }  
+            System.out.println();
+        }      
     }
     
     public void print() {
